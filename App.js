@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import {  StyleSheet} from "react-native";
+import Toast from 'react-native-toast-message';
+import LoginPage from "./src/pages/login";
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import SignupPage from './src/pages/signup';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+export default function App() {    
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <NavigationContainer>
+     <Stack.Navigator initialRouteName="login" screenOptions={{
+       headerShown: false
+     }}>
+       <Stack.Screen name='login'  component={ LoginPage }/>
+       <Stack.Screen name='signup' component={ SignupPage } />
+     </Stack.Navigator>
+     <Toast></Toast>
+   </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  
 });
